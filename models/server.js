@@ -31,6 +31,8 @@ class Server{
         //cors
         this.app.use(cors());
         this.app.use(express.static('public'));
+         //Lectura y parseo del body
+         this.app.use( express.json() );
     }
 
     routes(){
