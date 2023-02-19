@@ -1,11 +1,10 @@
 const { response, request } = require('express');
-const bcryptjs = require('bcryptjs');
 
 //Modelos
 
 const Categoria = require('../models/categoria');
 
-
+//Get categorias
 const getCategoria = async (req = request, res = response) => {
 
     const listaCategorias = await Promise.all([

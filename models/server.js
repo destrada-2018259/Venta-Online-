@@ -8,6 +8,7 @@ class Server{
         this.app = express();
         this.port = process.env.PORT;
         this.categoriaPath = '/api/categorias'
+        this.productoPath = '/api/productos'
     
         //Conectar a la base de datos
         this.conectarDB();
@@ -37,6 +38,7 @@ class Server{
 
     routes(){
         this.app.use(this.categoriaPath, require('../routes/categoria'));
+        this.app.use(this.productoPath, require('../routes/producto'));
     }
 
     listen(){
