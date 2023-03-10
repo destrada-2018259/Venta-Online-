@@ -35,7 +35,14 @@ const putCategoria = async (req = request, res = response) => {
     const { id } = req.params;
     const { _id, ...resto } = req.body;
 
-    const categoriaEditada = await Categoria.findByIdAndUpdate(id, resto)
+    const categoriaEditada = await Categoria.findByIdAndUpdate(id, resto, { new: true });
+
+    res.status(201).json({
+        msg: 'PUT API CATEGORIA',
+        categoriaEditada
+
+    })
+    
 
 }
 const deleteCategoria = async (req = request, res = response) => {

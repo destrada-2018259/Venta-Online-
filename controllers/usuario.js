@@ -57,9 +57,28 @@ const deleteUsuario = async (req = request, res = response) => {
     })
 }
 
+const registroUsuario = async (req = request, res = response) => {
+    const {nombre, email, password} = req.body;
+    const usuarioRegistrado = new Usuario({nombre, email, password});
+    const salt = bcryptjs.genSaltSync();
+    usuarioRegistrado.password = bcryptjs.hashSync(password, salt);
+    
+    await usuarioRegistrado.save();
+
+    res.status(201).json({
+        msg: 'Nuevo cliente registrado',
+        usuarioRegistrado
+        
+    })
+    
+
+}
+
 module.exports = {
     getUsuario,
     postUsuario,
     putUsuario,
-    deleteUsuario
+    deleteUsuario,
+    registroUsuario
+    
 }
