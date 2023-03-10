@@ -12,6 +12,7 @@ class Server{
         this.usuarioPath = '/api/usuarios'
         this.authPath = '/api/auth'
         this.carritoPath = '/api/carrito'
+        this.facturaPath = '/api/factura'
 
 
     
@@ -47,6 +48,7 @@ class Server{
         this.app.use(this.usuarioPath, require('../routes/usuario'));
         this.app.use(this.authPath, require('../routes/auth'));
         this.app.use(this.carritoPath, require('../routes/carrito'));
+        this.app.use(this.facturaPath, require('../routes/factura'));
     }
 
     listen(){

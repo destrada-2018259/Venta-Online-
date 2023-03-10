@@ -6,6 +6,11 @@ const FacturaSchema = Schema({
         ref: 'Usuario',
         required: true
     }, 
+    fecha:{
+        type: Date,
+        required: true,
+        default: Date()
+    },
     total: {
         type: Number,
         default: 0
