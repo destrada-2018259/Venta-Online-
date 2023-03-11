@@ -9,7 +9,7 @@ const validarJWT = async( req = request, res = response, next ) => {
     
     if ( !token ) {
         return res.status(401).json({
-            msg: 'There is no token in the request header'
+            msg: 'No hay token en el header de la peticion'
         });
     }
 
@@ -20,7 +20,7 @@ const validarJWT = async( req = request, res = response, next ) => {
         const user = await User.findById( uid );
         if ( !user ) {
             return res.status(401).json({
-                msg: 'not valid Token - User does not exist'
+                msg: 'el token no es valido - El usuario no existe'
             });
         }
 

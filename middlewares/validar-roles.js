@@ -6,8 +6,8 @@ const esAdminRole = (req = request, res = response, next) => {
         })
     }
 
-    const {role, nombre} = req.user
-    if(role != 'ADMIN_ROLE'){
+    const {rol, nombre} = req.user
+    if(rol != 'ADMIN_ROLE'){
         return res.status(401).json({
             msg: 'Solo el admin puede acceder a esta ruta.'
         })
@@ -23,8 +23,8 @@ const esClienteRole = (req = request, res = response) => {
         })
     }
 
-    const {role, nombre} = req.user
-    if (role === 'CLIENTE_ROLE') {
+    const {rol, nombre} = req.user
+    if (rol === 'CLIENTE_ROLE') {
         return res.status(200).json({
             msg: 'Eres un cliente'
         })
