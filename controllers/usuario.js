@@ -74,11 +74,48 @@ const registroUsuario = async (req = request, res = response) => {
 
 }
 
+const deleteMyAccount = async(req = request, res = response) => {
+    const {id} = req.params;
+    const usuarioId = req.user._id;
+
+    if(id === usuarioId){
+        const usuarioEliminado = await Usuario.findByIdAndDelete(id);
+    } else{
+        return res.status(401).json({
+            msg: 'No tienes permiso para eliminar este usuario'
+        })
+    }
+
+}
+
+const updateMyAccount = async(req = request, res = response) => {
+    const {id} = req.params;
+    const usuarioId = req.user._id;
+    if(id === usuarioId){
+        const {_id, estado, rol, ...resto} = req.body;
+
+        const salt = bcryptjs.genSaltSync();
+        resto.password = bcryptjs.hashSync(resto.password, salt);
+    
+        const usuarioEditado = await Usuario.findByIdAndUpdate(id, resto);
+        res.json({
+            msg: 'Usuario editado',
+            usuarioEditado
+        })
+    } else{
+        return res.status(401).json({
+            msg: 'No tienes permiso para editar este usuario'
+        })
+    }
+}
+
 module.exports = {
     getUsuario,
     postUsuario,
     putUsuario,
     deleteUsuario,
-    registroUsuario
+    registroUsuario,
+    deleteMyAccount,
+    updateMyAccount
     
 }

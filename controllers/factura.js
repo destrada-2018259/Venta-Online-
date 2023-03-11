@@ -28,7 +28,6 @@ const comprar = async (req = request, res = response) => {
         msg: 'Factura',
         facturaDB
     })
-
 }
 
 module.exports = {

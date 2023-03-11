@@ -18,6 +18,15 @@ const getCategoria = async (req = request, res = response) => {
     })
 
 }
+
+const getCategoriaById = async (req = request, res = response) => {
+    const { id } = req.params;
+    const categoria = await Categoria.findById(id).populate('categoria', 'nombre');
+    res.json({
+        msg: 'Categoria encontrada',
+        categoria
+    })
+}
 const postCategoria = async (req = request, res = response) => {
 
     const { categoria, descripcion } = req.body;
@@ -61,5 +70,6 @@ module.exports = {
     getCategoria,
     postCategoria,
     putCategoria,
-    deleteCategoria
+    deleteCategoria,
+    getCategoriaById
 }
